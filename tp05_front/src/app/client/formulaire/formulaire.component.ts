@@ -50,7 +50,7 @@ export class FormulaireComponent implements OnInit {
     this.pass1 =  formValue['password'];
     this.pass2 =  formValue['password2'];
     if(this.pass1===this.pass2){
-      this.clientService.addClient(formValue['nom'],formValue['prenom'],formValue['adresse'],formValue['codePostal'],formValue['ville'],formValue['telephone'],formValue['mail'],formValue['civilite'],formValue['login'],formValue['password'],formValue['password2']).subscribe((response) =>{
+      this.clientService.addClient(formValue['nom'],formValue['prenom'],formValue['adresse'],formValue['codePostal'],formValue['ville'],formValue['telephone'],formValue['mail'],formValue['login'],formValue['password']).subscribe((response) =>{
         if(response.body.success){
           
         }
