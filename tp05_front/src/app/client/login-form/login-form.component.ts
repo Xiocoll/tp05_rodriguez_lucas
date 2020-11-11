@@ -27,7 +27,7 @@ export class LoginFormComponent implements OnInit {
     const formValue = this.loginForm.value;
 
     this.httpService.logUser(formValue['login'], formValue['password']).subscribe((response) =>{
-      if(response.success){
+      if(response.body.success){
         this.token = response.headers.get('authorization');
       }
     })
