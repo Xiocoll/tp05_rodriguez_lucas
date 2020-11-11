@@ -12,6 +12,6 @@ import { LoginFormComponent } from './login-form/login-form.component';
     FormsModule,
     ReactiveFormsModule
   ],
-  declarations: [FormulaireComponent, LoginFormComponent]
+  declarations: [FormulaireComponent]
 })
 export class ClientModule {}

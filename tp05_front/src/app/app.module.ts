@@ -16,9 +16,11 @@ import { ProduitService } from "./produit.service";
 import { AccueilComponent } from "./accueil/accueil.component";
 import { NgxsModule } from '@ngxs/store';
 import { ProduitState } from "./shared/states/produit-state";
+import { LoginFormComponent } from './client/login-form/login-form.component';
 
 const appRoutes: Routes = [
   { path: "clients", component: ClientListComponent },
+  { path: "login", component: LoginFormComponent },
   { path: "tetiere", component: TetiereComponent },
   { path: "footer", component: FooterComponent },
   {
@@ -57,6 +59,7 @@ const appRoutes: Routes = [
     TetiereComponent,
     FooterComponent,
     ClientListComponent,
+    LoginFormComponent,
     PhonePipe,
     TestStringDirective,
     AccueilComponent

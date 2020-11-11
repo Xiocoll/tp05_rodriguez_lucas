@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ProduitService } from 'src/app/produit.service';
 import { User } from 'src/app/user';
@@ -14,13 +14,16 @@ export class LoginFormComponent implements OnInit {
   loginForm: FormGroup;
   token: string;
 
-  constructor(private httpService : ProduitService, private router : Router) { }
+  constructor(private formBuilder: FormBuilder, private httpService : ProduitService, private router : Router) { }
 
   ngOnInit(): void {
-    
+    this.loginForm = this.formBuilder.group({
+      login: ['', Validators.required],
+      password: ['', Validators.required],
+    });
   }
 
-  onSubmitForm(){
+  onSubmitLoginForm(){
     const formValue = this.loginForm.value;
 
     this.httpService.logUser(formValue['login'], formValue['password']).subscribe((response) =>{
