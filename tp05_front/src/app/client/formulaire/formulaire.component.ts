@@ -15,6 +15,11 @@ export class FormulaireComponent implements OnInit {
   clientForm: FormGroup;
   color: string = 'red'; 
   txtValue:string = '';
+  httpService: any;
+  pass1: string;
+  pass2: string;
+  
+  public nom: string;
 
   constructor(private formBuilder: FormBuilder, private clientService: ClientService, private router: Router){}
 
@@ -41,22 +46,16 @@ export class FormulaireComponent implements OnInit {
 
   onSubmitForm(){
     const formValue = this.clientForm.value;
-    const newClient = new Client(
-      formValue['nom'],
-      formValue['prenom'],
-      formValue['adresse'],
-      formValue['codePostal'],
-      formValue['ville'],
-      formValue['telephone'],
-      formValue['mail'],
-      formValue['civilite'],
-      formValue['login'],
-      formValue['password'],
-      formValue['password2']
-    );
-    if(newClient.password === newClient.password2){
-      this.clientService.addClient(newClient);
-      this.router.navigate(['/clients']);  
+    
+    this.pass1 =  formValue['password'];
+    this.pass2 =  formValue['password2'];
+    if(this.pass1===this.pass2){
+      this.clientService.addClient(formValue['nom'],formValue['prenom'],formValue['adresse'],formValue['codePostal'],formValue['ville'],formValue['telephone'],formValue['mail'],formValue['civilite'],formValue['login'],formValue['password'],formValue['password2']).subscribe((response) =>{
+        if(response.body.success){
+          
+        }
+        this.router.navigate(['/clients']); 
+      })
     } else {
       console.log("mauvais MDP");
     }
