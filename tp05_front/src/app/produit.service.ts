@@ -6,6 +6,8 @@ import { delay, map, tap } from "rxjs/operators";
 
 import { Produit } from "./produit";
 import { environment } from "./environment";
+import { Client } from './client';
+import { User } from './user';
 
 @Injectable({
   providedIn: "root"
@@ -48,6 +50,21 @@ export class ProduitService {
     return this.fetchProd().pipe(
       map(produits => produits.find(produit => produit.numero == num))
     );
+  }
+
+  logUser(login: string, password: string) : Observable<any> {
+    let body: URLSearchParams = new URLSearchParams();
+        body.set('login', login);
+        body.set('password', password);
+
+        return this.http.post<any>(
+            environment.login,
+            body.toString(),
+            {
+                headers: { 'content-type': 'application/x-www-form-urlencoded' },
+                observe: "response"
+            }
+        )
   }
 
   private fetchProd(): Observable<Produit[]> {

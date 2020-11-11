@@ -1,0 +1,19 @@
+<form  name="myForm" [formGroup]="loginForm" (ngSubmit)="onSubmitLoginForm()">
+	<div>
+		<div>
+			<label class="control-label col-sm-2">Votre login</label>
+			<input type="text" id="login" name="login" class="form-control" formControlName="login"/>
+		
+			<label class="control-label col-sm-2">Votre Password</label>
+			<input type="text" name="Password" class="form-control" formControlName="Password"/>
+      
+		</div>
+    </div>
+    <p>
+        <button type="submit"  class="btn btn-dark" [disabled]="loginForm.invalid">Login</button>
+    </p>
+    
+    
+</form>
+
+<p>token: {{ token }}</p>

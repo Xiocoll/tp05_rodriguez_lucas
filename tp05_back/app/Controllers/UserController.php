@@ -53,7 +53,7 @@ class UserController
     public function register(Request $request, Response $response, array $args): Response
     {
         $user = $request->getParsedBody();
-
+        
         $result = [
             "success" => true,
             "user" => $user
